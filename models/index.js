@@ -1,23 +1,23 @@
 const User = require('./user');
-const Post = require('./listing');
+const Listing = require('./listing');
 const Chat = require('./chat');
 
-User.hasMany(Post, {
+User.hasMany(Listing, {
     foreignKey: 'user_id',
     onDelete: 'CASCADE'
 });
 
-Post.belongsTo(User, {
+Listing.belongsTo(User, {
     foreignKey: 'user_id'
 })
 
-Post.hasMany(Chat, {
+Listing.hasMany(Chat, {
     foreignKey: 'post_id',
     onDelete: 'CASCADE'
 });
 
-Chat.belongsTo(Post, {
+Chat.belongsTo(Listing, {
     foreignKey: 'post_id'
 });
 
-module.exports = {User , Post , Chat};
+module.exports = {User , Listing , Chat};
