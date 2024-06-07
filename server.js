@@ -1,9 +1,22 @@
 const express = require('express');
 const app = express();
 const PORT = process.env.PORT || 3001;
+const router = require('./controllers');
+const exphbs = require('express-handlebars');
+const helpers = require('./uitls/helpers');
+
+const hbs = exphbs.create({ helpers });
+app.engine('handlebars', hbs.engine);
+app.set('view engine', 'handlebars');
+
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
+
+app.use(router);
+
 
 app.get('/', (req, res) => {
-    res.send('Hello, World!');
+    res.send('hello');
 });
 
 app.listen(PORT, () => {

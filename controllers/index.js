@@ -1,11 +1,11 @@
 const router = require('express').Router();
 
-const listingRoutes = require('./listingRoutes');
-const categoryRoutes = require('./categoryRoutes');
-const tagRoutes = require('./tagRoutes');
+const homepageRoutes = require('./homepageroutes')
+const controllerroutes = require('./api')
 
-router.use('/listings', listingRoutes);
-router.use('/categories', categoryRoutes);
-router.use('/tags', tagRoutes);
+
+router.use('/api', controllerroutes)
+router.use('/home', homepageRoutes);
+
 
 module.exports = router;
