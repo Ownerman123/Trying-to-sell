@@ -1,12 +1,12 @@
 const express = require("express");
 const router = express.Router();
-const { User, Post } = require("../../models");
+const { User, Listing } = require("../../models");
 
 // Route to fetch all listings and display them
 router.get("/", async (req, res) => {
   try {
     // Fetch all listings and join with user data
-    const listingData = await Post.findAll({
+    const listingData = await Listing.findAll({
       include: [
         {
           model: User,
@@ -35,7 +35,7 @@ router.get("/", async (req, res) => {
 // Example: Get a single listing by ID
 router.get("/:id", async (req, res) => {
   try {
-    const listingData = await Post.findByPk(req.params.id, {
+    const listingData = await Listing.findByPk(req.params.id, {
       include: [
         {
           model: User,
@@ -52,10 +52,10 @@ router.get("/:id", async (req, res) => {
     const listing = listingData.get({ plain: true });
 
     // Render a page or return data for a single listing
-    res.render("listing-details", {
+    res.render("individuallisting", {
       // Make sure you have a 'listing-details.hbs' view file
       listing,
-      logged_in: req.session.logged_in,
+      //logged_in: req.session.logged_in,
     });
   } catch (err) {
     console.error("Error fetching listing by ID:", err);

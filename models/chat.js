@@ -11,10 +11,10 @@ Chat.init(
       primaryKey: true,
       autoIncrement: true,
     },
-    post_id: {
+    listing_id: {
       type: DataTypes.INTEGER,
       references: {
-        model: 'post',
+        model: 'listing',
         key: 'id',
       },
     },
