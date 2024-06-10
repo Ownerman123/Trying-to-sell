@@ -20,6 +20,11 @@ User.init(
       type: DataTypes.STRING,
       allowNull: false,
     },
+    username: {
+      type: DataTypes.STRING,
+      allowNull: false,
+      unique: true,
+    },
     email: {
       type: DataTypes.STRING,
       allowNull: false,
@@ -52,7 +57,7 @@ User.init(
     freezeTableName: true,
     underscored: true,
     modelName: 'user',
-  }
+  } 
 );
 
 module.exports = User;
