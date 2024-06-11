@@ -2,6 +2,9 @@
     <h3>{{listing.title}}</h3>
     <img src="{{listing.url}}" alt="an image of {{listing.title}}">
     <h4>${{listing.price}}</h4>
+    <h5>posted by : {{listing.user.name}}</h5>
 </div>
     <p>{{listing.description}}</p>
-    
+    {{#if (isEqual listing.user_id logged_user) }}
+    <button>Chat with {{listing.user.name}} about this product</button>
+    {{/if}}
