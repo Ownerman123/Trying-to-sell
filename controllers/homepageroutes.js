@@ -15,7 +15,6 @@ router.get("/", async (req, res) => {
     });
 
     const listings = listingData.map((listing) => listing.get({ plain: true }));
-    console.log(listings);
     res.render("homepage", {
       listings,
       logged_in: true

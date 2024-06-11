@@ -1,7 +1,7 @@
 const sequelize = require('../config/connection');
 const { Listing } = require('../models');
 
-const userdata = [
+const listingData = [
   {
     title: "Monopoly",
     description: "holds alot of sentimental value but my friends say it must go",
@@ -50,7 +50,7 @@ const userdata = [
 ];
 
 const seedListings = async () => {
-  await Listing.bulkCreate([ /* listing data */ ]);
+  await Listing.bulkCreate(listingData);
 };
 
 module.exports = seedListings;

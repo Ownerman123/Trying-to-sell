@@ -1,20 +1,29 @@
-const seedUsers = require("./userSeeds");
-const seedListings = require("./listingSeeds");
+const sequelize = require('../config/connection');
+const seedUsers = require("./user");
+const seedListings = require("./listings");
 
 const seedAll = async () => {
-  console.log("Starting database seeding...");
-  try {
-    await seedUsers(); // Seed users first
-    console.log("Users seeded successfully.");
+    console.log("Starting database synchronization...");
+    try {
 
-    await seedListings(); // Then seed listings
-    console.log("Listings seeded successfully.");
-  } catch (error) {
-    console.error("Error seeding database:", error);
-  }
+        await sequelize.sync({ force: true }); 
+        console.log("Database synchronized successfully.");
+
+        console.log("Starting database seeding...");
+        await seedUsers();
+        console.log("Users seeded successfully.");
+
+        await seedListings();
+        console.log("Listings seeded successfully.");
+
+        console.log("Database seeding complete.");
+    } catch (error) {
+        console.error("Error during database seeding:", error);
+    } finally {
+        await sequelize.close();
+        console.log("Database connection closed.");
+        process.exit(0);
+    }
 };
 
-seedAll().then(() => {
-  console.log("Database seeding complete.");
-  process.exit(0); // Exit the process to avoid hanging
-});
+seedAll();
