@@ -6,8 +6,8 @@ router.get("/", async (req, res) => {
   try {
     res.render("homepage", {
       // objects for info to dynamically put to the page
-    //   logged_in: req.session.logged_in
-      logged_in: false
+      logged_in: req.session.logged_in
+     // logged_in: false
     });
   } catch (err) {
     res.status(500).json(err);
@@ -55,6 +55,8 @@ router.get("/login", async (req, res) => {
         res.status(500).send('Internal Server Error');
     }
 });
+
+
 
 module.exports = router;
 

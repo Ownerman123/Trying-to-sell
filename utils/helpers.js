@@ -9,5 +9,10 @@ module.exports = {
   },
   isEqual: (val1, val2) => {
     if(val1 === val2){return true;}else{return false;}
-  }
+  },
+  // isUserLoggedIn: async ()=> {
+  //   user = await fetch("http://localhost:3001/api/user");
+  //   if(!user){return false;}else{return true;}
+    
+  // }
 };
