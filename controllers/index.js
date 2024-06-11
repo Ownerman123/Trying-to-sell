@@ -5,7 +5,7 @@ const controllerroutes = require('./api')
 
 
 router.use('/api', controllerroutes)
-router.use('/home', homepageRoutes);
+router.use('/', homepageRoutes);
 
 
 module.exports = router;
