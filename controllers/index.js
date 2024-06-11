@@ -8,4 +8,9 @@ router.use("/api", controllerroutes);
 router.use("/home", homepageRoutes);
 router.use("/api/listings", listingRoutes);
 
+router.use('/api', controllerroutes)
+router.use('/', homepageRoutes);
+
+
+module.exports = router;
 module.exports = router;
