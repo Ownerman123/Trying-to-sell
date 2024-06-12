@@ -80,6 +80,12 @@ router.get("/newListing", async (req, res) => {
   }
 });
 
+router.get("/setLogin", (req, res) => {
+  req.session.logged_in = true;
+  req.session.user_id = 1; // Set this to a valid user ID if needed
+  res.send("You are now logged in for testing purposes.");
+});
+
 module.exports = router;
 
 

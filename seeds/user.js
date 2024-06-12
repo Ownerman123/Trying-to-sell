@@ -22,6 +22,12 @@ const userdata = [
     email: 'ayeayecaptain@gmail.com',
     password: 'ICantHearYOUUUUU',
   },
+  {
+    name: 'asdf',
+    username: 'asdf',
+    email: 'asdf@asdf.com',
+    password: 'asdf'
+  }
 ];
 
 const seedUsers = async () => {
