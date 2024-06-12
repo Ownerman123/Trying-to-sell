@@ -17,31 +17,31 @@ Listing.init(
     },
     description: {
       type: DataTypes.STRING,
-      allowNull: true, // Changed from false to true if descriptions are optional
+      allowNull: true,
     },
     price: {
-        type: DataTypes.DECIMAL(10, 2), // Specify precision if needed
+        type: DataTypes.DECIMAL(10, 2),
         allowNull: false,
     },
     date_created: {
       type: DataTypes.DATE,
-      allowNull: false,
+      allowNull: true,
       defaultValue: DataTypes.NOW,
     },
     user_id: {
       type: DataTypes.INTEGER,
       references: {
-        model: 'user', // Make sure 'user' matches your user table exactly as it is in the database
+        model: 'user',
         key: 'id',
       },
     },
   },
   {
     sequelize,
-    timestamps: false, // Consider enabling timestamps if you want createdAt and updatedAt managed by Sequelize
+    timestamps: true,
     freezeTableName: true,
     underscored: true,
-    modelName: 'listing', // Updated modelName to 'listing'
+    modelName: 'listing',
   }
 );
 

@@ -1,19 +1,34 @@
 const express = require("express");
-
 const router = express.Router();
+const { Listing, User } = require("../models");
 
 router.get("/", async (req, res) => {
   try {
+    const listingData = await Listing.findAll({
+      include: [
+        {
+          model: User,
+          attributes: ['name'], // Only include the user's name
+        },
+      ],
+      order: [["createdAt", "DESC"]] // Assuming you want the newest posts first
+    });
+
+    const listings = listingData.map((listing) => listing.get({ plain: true }));
     res.render("homepage", {
-      // objects for info to dynamically put to the page
+
+      listings,
       logged_in: req.session.logged_in
      // logged_in: false
+
     });
+
   } catch (err) {
+    console.error("Failed to fetch listings:", err);
     res.status(500).json(err);
-    console.log("dang");
   }
 });
+
 
 router.get("/login", async (req, res) => {
     try {
