@@ -1,0 +1,11 @@
+<div class="listings-container">
+  {{#each listings as |listing|}}
+    <div class="listing">
+      <h3>{{listing.title}}</h3>
+      <p>Description: {{listing.description}}</p>
+      <p>Price: ${{listing.price}}</p>
+    </div>
+  {{else}}
+    <p>No listings available at this time.</p>
+  {{/each}}
+</div>
