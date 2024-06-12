@@ -3,7 +3,7 @@
 
 <h2>Your Posts</h2>
 <ul>
-    {{#each user.posts}}
-        <li>{{this.title}}</li>
+    {{#each user.listings as |listing|}}
+        <li>{{listing.title}}</li>
     {{/each}}
 </ul>
