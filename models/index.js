@@ -12,12 +12,12 @@ Listing.belongsTo(User, {
 })
 
 Listing.hasMany(Chat, {
-    foreignKey: 'post_id',
+    foreignKey: 'listing_id',
     onDelete: 'CASCADE'
 });
 
 Chat.belongsTo(Listing, {
-    foreignKey: 'post_id'
+    foreignKey: 'listing_id' 
 });
 
 module.exports = {User , Listing , Chat};

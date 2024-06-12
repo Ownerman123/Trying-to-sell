@@ -71,6 +71,9 @@ router.get("/login", async (req, res) => {
         res.status(500).send('Internal Server Error');
     }
 });
+router.get('/newListing', (req, res) => {
+  res.render("newListing", {})
+})
 
 
 
