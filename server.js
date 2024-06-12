@@ -5,6 +5,7 @@ const session = require('express-session');
 const createError = require('http-errors');
 const cloudinary = require('cloudinary').v2;
 const multer =  require('multer');
+const axios = require('axios');
 
 cloudinary.config({ 
   cloud_name: "drmzgx5pw", 

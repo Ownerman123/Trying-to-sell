@@ -1,6 +1,7 @@
 const express = require("express");
 const router = express.Router();
 const { Listing, User } = require("../models");
+const getLocation = require('../utils/getLocation');
 
 router.get("/", async (req, res) => {
   try {
@@ -66,8 +67,17 @@ router.get("/listing/:id", async (req, res) => {
   }
 });
 
-router.get('/newListing', (req, res) => {
-  res.render("newListing", {})
+
+router.get("/newListing", async (req, res) => {
+  try {
+    const locationData = await getLocation();
+    const location = locationData ? `${locationData.city}, ${locationData.country_name}` : "";
+
+    res.render("newListing", { location });
+  } catch (err) {
+    console.error("Failed to fetch location data:", err);
+    res.status(500).json(err);
+  }
 });
 
 module.exports = router;
