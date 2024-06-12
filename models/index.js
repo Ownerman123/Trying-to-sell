@@ -17,7 +17,7 @@ Listing.hasMany(Chat, {
 });
 
 Chat.belongsTo(Listing, {
-    foreignKey: 'listing_id'
+    foreignKey: 'listing_id' 
 });
 
 module.exports = {User , Listing , Chat};

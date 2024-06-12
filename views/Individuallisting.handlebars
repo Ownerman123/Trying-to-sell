@@ -6,5 +6,8 @@
 </div>
     <p>{{listing.description}}</p>
     {{#if (isEqual listing.user_id logged_user) }}
+    <button>View </button>
+
+    {{#else}}
     <button>Chat with {{listing.user.name}} about this product</button>
     {{/if}}

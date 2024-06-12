@@ -3,6 +3,17 @@ require('dotenv').config();
 const express = require('express');
 const session = require('express-session');
 const createError = require('http-errors');
+const cloudinary = require('cloudinary').v2;
+const multer =  require('multer');
+
+cloudinary.config({ 
+  cloud_name: "drmzgx5pw", 
+  api_key: "664175232868797", 
+  api_secret: "1xhnVAvtMkLjIL3uYNaXZdPWeK8" // Click 'View Credentials' below to copy your API secret
+});
+
+const storage = multer.memoryStorage();
+const upload = multer({ storage });
 
 // Creating an express application
 const app = express();
@@ -19,6 +30,7 @@ const exphbs = require('express-handlebars');
 // Importing helpers for handlebars
 const helpers = require('./utils/helpers');
 const sequelize = require('./config/connection');
+
 
 // Creating an instance of express-handlebars with the imported helpers
 const hbs = exphbs.create({ helpers });
