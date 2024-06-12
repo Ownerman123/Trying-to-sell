@@ -35,6 +35,10 @@ Listing.init(
         key: 'id',
       },
     },
+    location: { // Add this line
+      type: DataTypes.STRING,
+      allowNull: true,
+    },
   },
   {
     sequelize,

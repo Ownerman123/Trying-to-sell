@@ -16,68 +16,62 @@ router.get("/", async (req, res) => {
 
     const listings = listingData.map((listing) => listing.get({ plain: true }));
     res.render("homepage", {
-
       listings,
       logged_in: req.session.logged_in
-     // logged_in: false
-
     });
-
   } catch (err) {
     console.error("Failed to fetch listings:", err);
     res.status(500).json(err);
   }
 });
 
-
 router.get("/login", async (req, res) => {
-    try {
-      res.render("login", {
-        // objects for info to dynamically put to the page
-        logged_in: req.session.logged_in
-      });
-    } catch (err) {
-      res.status(500).json(err);
-      console.log("dang");
-    }
-  });
-
-  router.get("/listing/:id", async (req, res) => {
-    console.log(req.params);
-    try {
-        const listingResponse = await fetch(`http://localhost:3001/api/listings/${req.params.id}`);
-        console.log("THIS IS THE THING", listingResponse);
-        if (!listingResponse.ok) {
-
-          if(listingResponse.status === 404 ){
-            res.status(404).send("404 could not find listing")
-          }else{
-            throw new Error('Failed to fetch listing data');
-          }
-        }
-
-        const listingdata = await listingResponse.json();
-        const currentUser = await fetch("http://localhost:3001/api/user");
-        console.log("this is the data" ,listingdata);
-        console.log(req.session.user);
-
-        res.render("individuallisting", {
-            listing: listingdata,
-            logged_in: req.session.logged_in,
-            logged_user: currentUser.id
-        });
-    } catch (error) {
-        console.error('Error fetching listing data:', error);
-        res.status(500).send('Internal Server Error');
-    }
+  try {
+    res.render("login", {
+      // objects for info to dynamically put to the page
+      logged_in: req.session.logged_in
+    });
+  } catch (err) {
+    res.status(500).json(err);
+    console.log("dang");
+  }
 });
+
+router.get("/listing/:id", async (req, res) => {
+  console.log(req.params);
+  try {
+    const listingResponse = await fetch(`http://localhost:3001/api/listings/${req.params.id}`);
+    console.log("THIS IS THE THING", listingResponse);
+    if (!listingResponse.ok) {
+      if(listingResponse.status === 404 ){
+        res.status(404).send("404 could not find listing")
+      }else{
+        throw new Error('Failed to fetch listing data');
+      }
+    }
+
+    const listingdata = await listingResponse.json();
+    const currentUser = await fetch("http://localhost:3001/api/user");
+    console.log("this is the data", listingdata);
+    console.log(req.session.user);
+
+    res.render("individuallisting", {
+      listing: listingdata,
+      logged_in: req.session.logged_in,
+      logged_user: currentUser.id
+    });
+  } catch (error) {
+    console.error('Error fetching listing data:', error);
+    res.status(500).send('Internal Server Error');
+  }
+});
+
 router.get('/newListing', (req, res) => {
   res.render("newListing", {})
-})
-
-
+});
 
 module.exports = router;
+
 
 // for example
 // router.get('/', async (req, res) => {
