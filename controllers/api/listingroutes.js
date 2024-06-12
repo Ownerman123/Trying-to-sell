@@ -30,5 +30,5 @@ router.get("/:id", async (req, res) => {
     res.status(500).json(err);
   }
 });
-// Export the router
+
 module.exports = router;
