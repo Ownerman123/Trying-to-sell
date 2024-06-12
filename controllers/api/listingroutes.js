@@ -2,38 +2,10 @@ const express = require("express");
 const router = express.Router();
 const { User, Listing } = require("../../models");
 
-// Route to fetch all listings and display them
-router.get("/", async (req, res) => {
-  try {
-    // Fetch all listings and join with user data
-    const listingData = await Listing.findAll({
-      include: [
-        {
-          model: User,
-          attributes: ["name"], // Only include the user's name
-        },
-      ],
-      order: [["createdAt", "DESC"]], // Assuming you want the newest posts first
-    });
-
-    // Serialize data to send to the frontend
-    const listings = listingData.map((listing) => listing.get({ plain: true }));
-
-    // Render the listings page with the fetched data
-    res.render("listings", {
-      // Make sure the view file is 'listings.hbs'
-      listings,
-      logged_in: req.session.logged_in, // Assume session handling for login status
-    });
-  } catch (err) {
-    console.error("Failed to fetch listings:", err);
-    res.status(500).json(err);
-  }
-});
-
 // Additional routes for individual listing operations can be added here
 // Example: Get a single listing by ID
 router.get("/:id", async (req, res) => {
+  console.log(req.params);
   try {
     const listingData = await Listing.findByPk(req.params.id, {
       include: [
@@ -52,15 +24,11 @@ router.get("/:id", async (req, res) => {
     const listing = listingData.get({ plain: true });
 
     // Render a page or return data for a single listing
-    res.render("individuallisting", {
-      // Make sure you have a 'listing-details.hbs' view file
-      listing,
-      //logged_in: req.session.logged_in,
-    });
+    res.json(listing);
   } catch (err) {
     console.error("Error fetching listing by ID:", err);
     res.status(500).json(err);
   }
 });
-// Export the router
+
 module.exports = router;
