@@ -1,0 +1,9 @@
+<!-- In your profile.handlebars file -->
+<h1>{{user.username}}'s Profile</h1>
+
+<h2>Your Posts</h2>
+<ul>
+    {{#each user.listings as |listing|}}
+        <li>{{listing.title}}</li>
+    {{/each}}
+</ul>
