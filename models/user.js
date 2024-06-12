@@ -53,14 +53,29 @@ User.init(
         }
         return updatedUserData;
       },
+      beforeBulkCreate: async (newUserData) => { 
+        for(user of newUserData){
+          user.password = await bcrypt.hash(user.password, 10);
+        }
+        
+        return newUserData;
+      },
       
+      
+      beforeBulkCreate: async (newUserData) => {
+        for(user of newUserData){
+        user.password = await bcrypt.hash(user.password, 10);
+      }
+      
+      return newUserData;
+    }
     },
     sequelize,
     timestamps: true,
     freezeTableName: true,
     underscored: true,
     modelName: 'user',
-  } 
+  }
 );
 
 module.exports = User;
