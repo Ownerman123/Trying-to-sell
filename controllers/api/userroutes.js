@@ -2,9 +2,10 @@
 const express = require("express");
 const { check, validationResult } = require('express-validator');
 const router = express.Router();
-const { User, Chat } = require("../../models");
+const { User, Chat, Listing } = require("../../models");
 const bcrypt = require("bcrypt");
-const { getCookies } = require("../../utils/helpers");
+//const { checkUserLoggedIn } = require("../../utils/auth");
+//const { getCookies } = require("../../utils/helpers");
 
 // Route to render login page
 router.get("/login", (req, res) => {
@@ -107,6 +108,32 @@ router.get("/logout", (req, res) => {
   } else {
     // If there's no session, return message
     res.json({message: 'No user to log out.'});
+  }
+});
+
+// Route to render profile page, 
+router.get("/profile", async (req, res) => {
+  console.log('here')
+  try {
+    // Find user by id from session
+    const user = await User.findOne({ 
+      where: { id: req.session.user.id },
+      include: [{model: Listing}],
+      attributes: { exclude: ["password"] }
+    });
+    console.log(user.id)
+
+    if (!user) {
+      // If user is not found, return error
+      return res.status(404).json({ message: 'User not found.' });
+    }
+    
+    // If user is found, render profile page with user data
+    res.render("profile", { user: user.get({ plain: true }) });
+  } catch (err) {
+    // If there's an error, return it
+    console.error('Error in GET /profile:', err);
+    res.status(500).json(err);
   }
 });
 

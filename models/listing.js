@@ -42,6 +42,7 @@ Listing.init(
     freezeTableName: true,
     underscored: true,
     modelName: 'listing', 
+
   }
 );
 
