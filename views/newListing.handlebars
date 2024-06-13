@@ -1,9 +1,24 @@
+{{#if logged_in}}
 <form id="uploadForm">
   <input type="file" id="fileInput" accept="image/*">
+  
+  <label for="title">title</label>
+  <input type="text" name="title" id="titleInput">
+  <label for="description">description</label>
+  <input type="text" name="description" id="descriptionInput">
+  <label for="price">Price</label>
+  <input type="number" name="price" id="priceInput">
+  <input type="hidden" id="userId" value="{{logged_user}}">
+  
   <button type="submit">Upload Image</button>
 </form>
+<script src="./js/imagesave.js"></script>
+{{else}}
+<p>login to make a new listing</p>
 
 
+
+{{/if}}
 {{!-- <form method="post" enctype="multipart/form-data">
   <div>
     <label for="image_uploads">Choose images to upload (PNG, JPG)</label>
@@ -25,5 +40,3 @@
 
 
 
-
-<script src="./js/imagesave.js"></script>

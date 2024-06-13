@@ -71,8 +71,13 @@ router.get("/login", async (req, res) => {
         res.status(500).send('Internal Server Error');
     }
 });
-router.get('/newListing', (req, res) => {
-  res.render("newListing", {})
+router.get('/newListing', async (req, res) => {
+  const currentUser = await fetch("http://localhost:3001/api/user");
+  //console.log("cur user", currentUser);
+  res.render("newListing", {
+    logged_in: req.session.logged_in,
+    logged_user: req.session.user.id
+  })
 })
 
 

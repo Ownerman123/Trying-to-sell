@@ -30,5 +30,15 @@ router.get("/:id", async (req, res) => {
     res.status(500).json(err);
   }
 });
+router.post("/", async (req, res) => {
+try{
+  newlisting = await Listing.create(req.body);
+
+  res.json({ message: 'listing created.' });
+}catch (err) {
+  res.status(500).json(err);
+}
+
+})
 
 module.exports = router;
