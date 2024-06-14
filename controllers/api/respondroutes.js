@@ -28,6 +28,10 @@ router.post("/", (req, res) => {
     else if((/(lowball|low ball|scam|rip me off)/i).test(receivedMessage)) {
         response = "sorry! im not trying to lowball you, just tring to see if you give me a decent deal. i'm just that interested! are you flexible with the price??"
     }
+    else if((/(jerk|screw|chump)/i).test(receivedMessage)) {
+        response = "Woe DUDE! YOU HAVE NO IDEA WHO YOU'RE SCREWING WITH! BETTER SLEEP WITH ONE EYE OPEN!!!";
+    } 
+
    
 
     res.json({
