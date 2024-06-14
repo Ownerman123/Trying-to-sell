@@ -36,27 +36,3 @@ router.post("/", (req, res) => {
 module.exports = router;
 
 
-// // Define your API key
-// const apiKey = 'sk-proj-ZMkVnIQAhXQtPgtPomDAT3BlbkFJ6AdoXRjrxyaighD6yWWU';
-
-// async function example() {
-//     // To use ESM in CommonJS, you can use a dynamic import like this:
-//     const { ChatGPTAPI } = await import('chatgpt')
-//     // You can also try dynamic importing like this:
-//     // const importDynamic = new Function('modulePath', 'return import(modulePath)')
-//     // const { ChatGPTAPI } = await importDynamic('chatgpt')
-  
-//     // const api = new ChatGPTUnofficialProxyAPI({
-//     //     accessToken: process.env.OPENAI_ACCESS_TOKEN
-//     //   })
-    
-//     //   const res = await api.sendMessage('Hello World!')
-//     //   console.log(res.text)
-
-//     const api = new ChatGPTAPI({ apiKey: apiKey})
-
-//     const res = await api.sendMessage('Hello World!')
-//     console.log(res.text)
-//   }
-
-//   example();
