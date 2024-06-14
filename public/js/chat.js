@@ -57,20 +57,14 @@ function addBotMessage(message) {
 function respondToUser(userMessage) {
   // Replace this with your chatbot logic
   setTimeout(() => {
-    // addBotMessage("Great! Let me think about it");
-    fetch("/api/response", {
-      method: "POST",
-      body: JSON.stringify({ message: userMessage }),
-      headers: {
-        "Content-Type": "application/json",
-      }
-    })
-    .then(res => res.json())
-    .then(({ message}) => {
-      addBotMessage(message)
-    })
-  }, Math.floor(Math.random() * (9000 - 4000 + 1)) + 2000);
-
+    addBotMessage("Great! Let me think about it");
+  }, 9000);
+  setTimeout(() => {
+    addBotMessage("I'll get back to you soon");
+  }, 15000);
+  setTimeout(() => {
+    addBotMessage("gotta get the wife's approval lol");
+  }, 18000);
 
 }
 
