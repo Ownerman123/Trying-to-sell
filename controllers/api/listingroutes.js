@@ -48,7 +48,7 @@ router.post('/listings', async (req, res) => {
     console.info('Request Body:', req.body.imageUrl);
     
     const newListing = await Listing.create({
-      imgUrl: req.body.imageUrl,
+      img_url: req.body.imageUrl,
       title: req.body.title,
       description: req.body.description,
       price: req.body.price,
@@ -56,7 +56,7 @@ router.post('/listings', async (req, res) => {
       date_created: req.body.date_created,
       location: req.body.location,
     });
-    res.status(201).json(newListing);
+    res.status(201).json({newListing, });
   } catch (error) {
     console.error('Error creating listing:', error);
     res.status(500).json({ message: `${error} Failed to create listing`,  });
