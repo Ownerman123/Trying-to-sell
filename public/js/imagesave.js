@@ -42,7 +42,7 @@ document.getElementById('uploadForm').addEventListener('submit', async (e) => {
     
 
     console.log(newlisting);
-    const created = await fetch("/api/listings/listings",{
+    const created = await fetch("/api/listings/",{
         method: 'POST',
         headers: {
             'Content-Type': 'application/json'
@@ -52,6 +52,7 @@ document.getElementById('uploadForm').addEventListener('submit', async (e) => {
      
     if(created.ok){
         console.log('listing created');
+        document.location.replace('/')
     }else{console.log('something went wrong', created)}
 
 

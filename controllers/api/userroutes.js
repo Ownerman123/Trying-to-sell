@@ -5,6 +5,7 @@ const { User, Listing } = require("../../models");
 const bcrypt = require("bcrypt");
 const session = require('express-session');
 
+
 // Route to render login page
 router.get("/login", (req, res) => {
   res.render("login");
@@ -48,11 +49,6 @@ router.post("/signup", async (req, res) => {
     if (existingUser) { console.log(existingUser)
       return res.status(400).json({ message: 'Signup failed. Username already exists.' , user: existingUser });
     }
-
-
-
-    
-
 
     const newUser = await User.create({
       name: req.body.name,
