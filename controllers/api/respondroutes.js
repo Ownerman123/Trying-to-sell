@@ -17,13 +17,16 @@ router.post("/", (req, res) => {
         response = "Great! I'll be in touch."
     }
     else if((/(hello|hi|hey)/i).test(receivedMessage)) {
-        response = "hey, sorry for the delay. still waiting on my wife. i'm still interested though...";
+        response = "hey, sorry for the delay. still waiting on my wife. i'm still interested though... is the price flexible?";
     }
     else if((/(flexible|flex)/i).test(receivedMessage)) {
             response = "Unfortunately, the boss says it's a no go for me. Thanks for your time.";
     } 
     else if((/(let me know|interested)/i).test(receivedMessage)) {
         response = "im still interested, just waiting on my wife's approval. are you felxible with the price??"
+    }
+    else if((/(lowball|low ball|scam|rip me off)/i).test(receivedMessage)) {
+        response = "sorry! im not trying to lowball you, just tring to see if you give me a decent deal. i'm just that interested! are you flexible with the price??"
     }
    
 
