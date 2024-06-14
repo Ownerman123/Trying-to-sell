@@ -35,13 +35,18 @@ Listing.init(
         key: 'id',
       },
     },
+    location: { // Add this line
+      type: DataTypes.STRING,
+      allowNull: true,
+    },
   },
   {
     sequelize,
     timestamps: true,
     freezeTableName: true,
     underscored: true,
-    modelName: 'Listing',
+    modelName: 'listing', 
+
   }
 );
 
