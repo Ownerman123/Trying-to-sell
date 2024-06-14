@@ -55,33 +55,8 @@
   </div>
 
 
-        // Submit the form data to your server
-        const result = await fetch('/api/listings', {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-          },
-          body: JSON.stringify({
-            title,
-            description,
-            price,
-            imageUrl: data.secure_url, // Add the Cloudinary image URL
-          }),
-        });
-
-        const resultData = await result.json();
-        if (result.ok) {
-          alert('Listing created successfully!');
-          window.location.href = '/'; // Redirect to home or another page
-        } else {
-          alert('Failed to create listing: ' + resultData.message);
-        }
-      } catch (error) {
-        console.error('Error uploading file:', error);
-        alert('Error uploading file. Please try again.');
-      }
-    });
-  </script>
+       
+  <script src="js/imagesave.js"></script>
 </body>
 
 </html>
