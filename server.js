@@ -5,6 +5,7 @@ const session = require('express-session');
 const createError = require('http-errors');
 const cloudinary = require('cloudinary').v2;
 const multer =  require('multer');
+const axios = require('axios');
 
 cloudinary.config({ 
   cloud_name: "drmzgx5pw", 
@@ -46,10 +47,14 @@ app.use(express.static('public'));
 
 // Session management middleware
 app.use(session({
-  secret: 'your secret key', // Secret key for signing the session ID cookie
-  resave: false, // Forces the session to be saved back to the session store
-  saveUninitialized: true, // Forces a session that is "uninitialized" to be saved to the store
+  secret: process.env.SESSION_SECRET || 'your secret key',
+  resave: false,
+  saveUninitialized: true,
+  cookie: {
+    maxAge: 2 * 60 * 60 * 1000 // Set session expiration time (e.g., 2 hours)
+  }
 }));
+
 
 // Middleware for serving static files from the "public" directory
 app.use(express.static('public'));

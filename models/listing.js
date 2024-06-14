@@ -35,6 +35,14 @@ Listing.init(
         key: 'id',
       },
     },
+    location: { // Add this line
+      type: DataTypes.STRING,
+      allowNull: true,
+    },
+    imgUrl: {
+      type: DataTypes.TEXT,
+      allowNull: true,
+    }
   },
   {
     sequelize,

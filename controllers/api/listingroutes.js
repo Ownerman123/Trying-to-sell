@@ -22,6 +22,7 @@ router.get("/:id", async (req, res) => {
     }
 
     const listing = listingData.get({ plain: true });
+    console.log(listing);
 
     // Render a page or return data for a single listing
     res.json(listing);
@@ -40,5 +41,26 @@ try{
 }
 
 })
+
+router.post('/listings', async (req, res) => {
+  
+  try {
+    console.info('Request Body:', req.body.imageUrl);
+    
+    const newListing = await Listing.create({
+      imgUrl: req.body.imageUrl,
+      title: req.body.title,
+      description: req.body.description,
+      price: req.body.price,
+      user_id: req.body.user_id,
+      date_created: req.body.date_created,
+      location: req.body.location,
+    });
+    res.status(201).json(newListing);
+  } catch (error) {
+    console.error('Error creating listing:', error);
+    res.status(500).json({ message: `${error} Failed to create listing`,  });
+  }
+});
 
 module.exports = router;

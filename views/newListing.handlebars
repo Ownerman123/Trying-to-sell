@@ -1,42 +1,50 @@
-{{#if logged_in}}
-<form id="uploadForm">
-  <input type="file" id="fileInput" accept="image/*">
-  
-  <label for="title">title</label>
-  <input type="text" name="title" id="titleInput">
-  <label for="description">description</label>
-  <input type="text" name="description" id="descriptionInput">
-  <label for="price">Price</label>
-  <input type="number" name="price" id="priceInput">
-  <input type="hidden" id="userId" value="{{logged_user}}">
-  
-  <button type="submit">Upload Image</button>
-</form>
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>New Listing | "Try" To Sell</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="/public/css/style.css" />
+</head>
+
+<body class="bg-gray-100 flex items-center justify-center h-screen">
+  <div class="w-full max-w-lg">
+    <div class="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4">
+      <h2 class="text-2xl font-bold text-center mb-6">Create New Listing</h2>
+      <form id="uploadForm" class="space-y-4">
+        <div>
+          <label for="title" class="block text-gray-700 text-sm font-bold mb-2">Title</label>
+          <input type="text" id="titleInput" name="title" required
+            class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
+        </div>
+        <div>
+          <label for="description" class="block text-gray-700 text-sm font-bold mb-2">Description</label>
+          <textarea id="descriptionInput" name="description" rows="4" required
+            class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"></textarea>
+        </div>
+        <div>
+          <label for="price" class="block text-gray-700 text-sm font-bold mb-2">Price ($)</label>
+          <input type="number" id="priceInput" name="price" step="0.01" required
+            class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
+        </div>
+        <div>
+          <label for="fileInput" class="block text-gray-700 text-sm font-bold mb-2">Upload Image</label>
+          <input type="file" id="fileInput" name="file" accept="image/*" required
+            class="block w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 focus:outline-none">
+            <input type="number" id="userId" hidden="true" value="{{user_id}}">
+          
+        </div>
+        <div class="flex items-center justify-between">
+          <button type="submit"
+            class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">Create
+            Listing</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+
+
 <script src="./js/imagesave.js"></script>
-{{else}}
-<p>login to make a new listing</p>
-
-
-
-{{/if}}
-{{!-- <form method="post" enctype="multipart/form-data">
-  <div>
-    <label for="image_uploads">Choose images to upload (PNG, JPG)</label>
-    <input
-      type="file"
-      id="image_uploads"
-      name="image_uploads"
-      accept=".jpg, .jpeg, .png"
-      multiple />
-  </div>
-  <div class="preview">
-    <p>No files currently selected for upload</p>
-  </div>
-  <div>
-    <button>Submit</button>
-  </div>
-</form>
- --}}
-
-
-

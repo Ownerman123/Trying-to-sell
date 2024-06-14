@@ -7,6 +7,7 @@ const listingData = [
     description: "holds alot of sentimental value but my friends say it must go",
     price: 5,
     user_id: 1,
+    location: "New York, NY", 
     date_created: new Date(),
     created_at: new Date(),
     updated_at: new Date()
@@ -16,6 +17,7 @@ const listingData = [
     description: "its not just a boulder its a rock! the pioneers used to ride these babies for miles",
     price: 5000,
     user_id: 3,
+    location: "Boulder, CO", 
     date_created: new Date(),
     created_at: new Date(),
     updated_at: new Date()
@@ -25,6 +27,7 @@ const listingData = [
     description: "has holes",
     price: 1,
     user_id: 3,
+    location: "San Francisco, CA",
     date_created: new Date(),
     created_at: new Date(),
     updated_at: new Date()
@@ -34,6 +37,7 @@ const listingData = [
     description: "my pet snail",
     price: 20,
     user_id: 3,
+    location: "Bikini Bottom",
     date_created: new Date(),
     created_at: new Date(),
     updated_at: new Date()
@@ -43,6 +47,7 @@ const listingData = [
     description: "No STAIRWAY?!",
     price: 5000,
     user_id: 2,
+    location: "Seattle, WA",
     date_created: new Date(),
     created_at: new Date(),
     updated_at: new Date()
