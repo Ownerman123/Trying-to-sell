@@ -57,14 +57,50 @@ function addBotMessage(message) {
 function respondToUser(userMessage) {
   // Replace this with your chatbot logic
   setTimeout(() => {
-    addBotMessage("Great! Let me think about it");
-  }, 9000);
-  setTimeout(() => {
-    addBotMessage("I'll get back to you soon");
-  }, 15000);
-  setTimeout(() => {
-    addBotMessage("gotta get the wife's approval lol");
-  }, 18000);
+// addBotMessage("Great! Let me think about it");
+    fetch("/api/response", {
+      method: "POST",
+      body: JSON.stringify({ message: userMessage }),
+      headers: {
+        "Content-Type": "application/json",
+      }
+    })
+    .then(res => res.json())
+    .then(({ message}) => {
+      addBotMessage(message)
+    })
+  }, Math.floor(Math.random() * (9000 - 3000 + 1)) + 3000);
+  // setTimeout(() => {
+  //   addBotMessage("I'll get back to you soon");
+  // }, 15000);
+  // setTimeout(() => {
+  //   addBotMessage("gotta get the wife's approval lol");
+  // }, 18000);
+
+}
+
+
+// Automatically open the chatbox on page load
+toggleChatbox();
+    // addBotMessage("Great! Let me think about it");
+    fetch("/api/response", {
+      method: "POST",
+      body: JSON.stringify({ message: userMessage }),
+      headers: {
+        "Content-Type": "application/json",
+      }
+    })
+    .then(res => res.json())
+    .then(({ message}) => {
+      addBotMessage(message)
+    })
+  }, Math.floor(Math.random() * (9000 - 3000 + 1)) + 3000);
+  // setTimeout(() => {
+  //   addBotMessage("I'll get back to you soon");
+  // }, 15000);
+  // setTimeout(() => {
+  //   addBotMessage("gotta get the wife's approval lol");
+  // }, 18000);
 
 }
 
