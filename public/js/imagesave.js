@@ -1,21 +1,53 @@
 
-const fileInput = document.getElementById('fileInput');
-const titleInput = document.getElementById('titleInput');
-const descriptionInput = document.getElementById('descriptionInput');
-const priceInput = document.getElementById('priceInput');
-const userInput = document.getElementById('userId');
-console.log(userInput.value);
+document.addEventListener('DOMContentLoaded', () => {
+  const fileInput = document.getElementById('fileInput');
+  const titleInput = document.getElementById('titleInput');
+  const descriptionInput = document.getElementById('descriptionInput');
+  const priceInput = document.getElementById('priceInput');
+  const userInput = document.getElementById('userId');
+  const locationInput = document.getElementById('locationInput');
 
-document.getElementById('uploadForm').addEventListener('submit', async (e) => {
+  console.log('fileInput:', fileInput);
+  console.log('titleInput:', titleInput);
+  console.log('descriptionInput:', descriptionInput);
+  console.log('priceInput:', priceInput);
+  console.log('userInput:', userInput);
+  console.log('locationInput:', locationInput);
+
+  const fileChosen = document.getElementById('file-chosen');
+  let filesArray = [];
+
+  fileInput.addEventListener('change', (event) => {
+    const files = Array.from(event.target.files);
+    filesArray = filesArray.concat(files);
+    updateFileList();
+  });
+
+  function updateFileList() {
+    if (filesArray.length > 0) {
+      const fileNames = filesArray.map(file => file.name).join(', ');
+      fileChosen.textContent = fileNames;
+    } else {
+      fileChosen.textContent = 'No files chosen';
+    }
+  }
+
+  document.getElementById('uploadForm').addEventListener('submit', async (e) => {
     e.preventDefault();
 
-    const newlisting = {};
-    
-    
-    const file = fileInput.files[0];
-    
+    // Check if elements are properly found
+    if (!fileInput || !titleInput || !descriptionInput || !priceInput || !userInput || !locationInput) {
+      console.error('One or more input elements are not found in the DOM.');
+      return;
+    }
+
+
+    const newlisting = {};    
+    const files = fileInput.files;
     const formData = new FormData();
-    formData.append('file', file);
+    Array.from(files).forEach((file, index) => {
+      formData.append('file', file, file.name);
+    });
     
     try {
       const response = await fetch('/api/cloudinary/upload', {
@@ -26,9 +58,6 @@ document.getElementById('uploadForm').addEventListener('submit', async (e) => {
       const data = await response.json();
       console.log('Uploaded Image URL:', data.url);
       newlisting.imageUrl = data.url;
-      
-      
-      // Do something with the uploaded image URL (e.g., display it to the user)
     } catch (error) {
       console.error('Error uploading image:', error);
     }
@@ -37,26 +66,26 @@ document.getElementById('uploadForm').addEventListener('submit', async (e) => {
     newlisting.description = descriptionInput.value;
     newlisting.price = priceInput.value;
     newlisting.user_id = userInput.value;
+    newlisting.location = locationInput.value;
     newlisting.date_created = new Date();
     console.log(newlisting.imageUrl);
     
-
     console.log(newlisting);
-    const created = await fetch("/api/listings/listings",{
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json'
-        },
-        body: JSON.stringify(newlisting)
+    const created = await fetch("/api/listings/listings", {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(newlisting)
     });
      
-    if(created.ok){
-        console.log('listing created');
-    }else{console.log('something went wrong', created)}
-
-
+    if (created.ok) {
+      console.log('Listing created');
+    } else {
+      console.log('Something went wrong', created);
+    }
   });
-
+});
 
 //mdn example
 // const input = document.querySelector("input");

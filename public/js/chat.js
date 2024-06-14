@@ -69,7 +69,7 @@ function respondToUser(userMessage) {
     .then(({ message}) => {
       addBotMessage(message)
     })
-  }, Math.floor(Math.random() * (9000 - 3000 + 1)) + 3000);
+  }, Math.floor(Math.random() * (9069 - 3069 + 1)) + 3000);
   // setTimeout(() => {
   //   addBotMessage("I'll get back to you soon");
   // }, 15000);
