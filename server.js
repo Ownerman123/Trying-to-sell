@@ -8,9 +8,9 @@ const multer =  require('multer');
 const axios = require('axios');
 
 cloudinary.config({ 
-  cloud_name: "drmzgx5pw", 
-  api_key: "664175232868797", 
-  api_secret: "1xhnVAvtMkLjIL3uYNaXZdPWeK8" // Click 'View Credentials' below to copy your API secret
+  cloud_name: process.env.CLOUD_NAME, 
+  api_key: process.env.API_KEY, 
+  api_secret: process.env.API_SECRET
 });
 
 const storage = multer.memoryStorage();

@@ -5,11 +5,12 @@ const multer =  require('multer');
 const storage = multer.memoryStorage();
 const upload = multer({ storage });
 const streamifier = require('streamifier');
+require('dotenv').config();
 
 cloudinary.config({ 
-    cloud_name: "drmzgx5pw", 
-    api_key: "664175232868797", 
-    api_secret: "1xhnVAvtMkLjIL3uYNaXZdPWeK8"
+    cloud_name: process.env.CLOUD_NAME, 
+    api_key: process.env.API_KEY, 
+    api_secret: process.env.API_SECRET
 });
 
 router.post('/upload', upload.single('file'), (req, res) => {
