@@ -16,25 +16,33 @@
       <form id="uploadForm" class="space-y-4">
         <div>
           <label for="title" class="block text-gray-700 text-sm font-bold mb-2">Title</label>
+
           <input type="text" id="titleInput" name="title" required
+
             class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
         </div>
         <div>
           <label for="description" class="block text-gray-700 text-sm font-bold mb-2">Description</label>
+
           <textarea id="descriptionInput" name="description" rows="4" required
+
             class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"></textarea>
         </div>
         <div>
           <label for="price" class="block text-gray-700 text-sm font-bold mb-2">Price ($)</label>
+
           <input type="number" id="priceInput" name="price" step="0.01" required
+
             class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
         </div>
         <div>
           <label for="fileInput" class="block text-gray-700 text-sm font-bold mb-2">Upload Image</label>
           <input type="file" id="fileInput" name="file" accept="image/*" required
             class="block w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 focus:outline-none">
+
             <input type="number" id="userId" hidden="true" value="{{user_id}}">
           
+
         </div>
         <div class="flex items-center justify-between">
           <button type="submit"
@@ -46,5 +54,33 @@
   </div>
 
 
+        // Submit the form data to your server
+        const result = await fetch('/api/listings', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({
+            title,
+            description,
+            price,
+            imageUrl: data.secure_url, // Add the Cloudinary image URL
+          }),
+        });
 
-<script src="./js/imagesave.js"></script>
+        const resultData = await result.json();
+        if (result.ok) {
+          alert('Listing created successfully!');
+          window.location.href = '/'; // Redirect to home or another page
+        } else {
+          alert('Failed to create listing: ' + resultData.message);
+        }
+      } catch (error) {
+        console.error('Error uploading file:', error);
+        alert('Error uploading file. Please try again.');
+      }
+    });
+  </script>
+</body>
+
+</html>

@@ -39,11 +39,13 @@ Listing.init(
       type: DataTypes.STRING,
       allowNull: true,
     },
+
     img_url: {
       type: DataTypes.TEXT,
       allowNull: true,
       field: 'img_url',
     }
+
   },
   {
     sequelize,

@@ -63,4 +63,15 @@ router.post('/listings', async (req, res) => {
   }
 });
 
+router.post('/listings', async (req, res) => {
+  try {
+    const { title, description, price, imageUrl } = req.body;
+    const newListing = await Listing.create({ title, description, price, imageUrl });
+    res.status(201).json(newListing);
+  } catch (error) {
+    console.error('Error creating listing:', error);
+    res.status(500).json({ message: 'Failed to create listing' });
+  }
+});
+
 module.exports = router;

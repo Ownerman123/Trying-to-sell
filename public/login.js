@@ -19,7 +19,9 @@ $(document).ready(function() {
     });
 
     function loginUser(username, password) {
+
         $.post('/api/user/login', {
+
             username: username,
             password: password
         })
