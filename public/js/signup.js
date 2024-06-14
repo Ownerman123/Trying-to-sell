@@ -33,7 +33,9 @@ $(document).ready(function () {
   });
 
   function signUpUser(username, password, email, name) {
-    $.post("/api/userroutes/signup", {
+
+    $.post("/api/user/signup", {
+
       username: username,
       password: password,
       email: email,

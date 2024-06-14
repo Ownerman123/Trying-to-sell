@@ -1,7 +1,17 @@
+
+const fileInput = document.getElementById('fileInput');
+const titleInput = document.getElementById('titleInput');
+const descriptionInput = document.getElementById('descriptionInput');
+const priceInput = document.getElementById('priceInput');
+const userInput = document.getElementById('userId');
+console.log(userInput.value);
+
 document.getElementById('uploadForm').addEventListener('submit', async (e) => {
     e.preventDefault();
+
+    const newlisting = {};
     
-    const fileInput = document.getElementById('fileInput');
+    
     const file = fileInput.files[0];
     
     const formData = new FormData();
@@ -15,11 +25,36 @@ document.getElementById('uploadForm').addEventListener('submit', async (e) => {
       
       const data = await response.json();
       console.log('Uploaded Image URL:', data.url);
+      newlisting.imageUrl = data.url;
+      
       
       // Do something with the uploaded image URL (e.g., display it to the user)
     } catch (error) {
       console.error('Error uploading image:', error);
     }
+
+    newlisting.title = titleInput.value;
+    newlisting.description = descriptionInput.value;
+    newlisting.price = priceInput.value;
+    newlisting.user_id = userInput.value;
+    newlisting.date_created = new Date();
+    console.log(newlisting.imageUrl);
+    
+
+    console.log(newlisting);
+    const created = await fetch("/api/listings/listings",{
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(newlisting)
+    });
+     
+    if(created.ok){
+        console.log('listing created');
+    }else{console.log('something went wrong', created)}
+
+
   });
 
 
