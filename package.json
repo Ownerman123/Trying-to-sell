@@ -5,12 +5,14 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "seed": "node ./seeds/seed.js",
-    "start": "npm run seed && node server.js"
+  "seed": "node ./seeds/seed.js",
+  "start": "npm run seed && node server.js"
   },
   "author": "",
   "license": "MIT",
   "dependencies": {
+    "axios": "^1.7.2",
+    "chatgpt": "^5.2.5",
     "cloudinary": "^2.2.0",
     "connect-session-sequelize": "^7.1.7",
     "express-handlebars": "^7.1.2",
