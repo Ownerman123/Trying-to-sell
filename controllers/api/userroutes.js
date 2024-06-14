@@ -32,6 +32,7 @@ router.post("/login", [
     }
 
     req.session.user = { id: user.id, username: user.username };
+    req.session.user_id = user.id; 
     req.session.logged_in = true;
 
     res.json({ message: 'You are now logged in.' });
@@ -101,7 +102,7 @@ router.get("/profile", async (req, res) => {
       return res.status(404).json({ message: 'User not found.' });
     }
 
-    res.render("profile", { user: user.get({ plain: true }) });
+    res.render("profile", { user: user.get({ plain: true }),});
   } catch (err) {
     res.status(500).json(err);
   }
