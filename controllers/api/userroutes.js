@@ -62,7 +62,7 @@ router.post("/signup", async (req, res) => {
       password: req.body.password,
 
     });
-    req.session.user_id = user.id;
+    req.session.user_id = newUser.id;
     req.session.user = { id: newUser.id, username: newUser.username };
     req.session.logged_in = true;
 
