@@ -10,7 +10,8 @@ const listingData = [
     location: "New York, NY", 
     date_created: new Date(),
     created_at: new Date(),
-    updated_at: new Date()
+    updated_at: new Date(),
+    img_url: "https://res.cloudinary.com/drmzgx5pw/image/upload/v1718406793/uploads/acri2oxrxyrpjjbbwyqc.png"
   },
   {
     title: "Boulder",
@@ -20,7 +21,8 @@ const listingData = [
     location: "Boulder, CO", 
     date_created: new Date(),
     created_at: new Date(),
-    updated_at: new Date()
+    updated_at: new Date(),
+    img_url: "https://res.cloudinary.com/drmzgx5pw/image/upload/v1718406671/uploads/wtxf2ox05mapucjpa7zv.png"
   },
   {
     title: "pants",
@@ -30,7 +32,8 @@ const listingData = [
     location: "San Francisco, CA",
     date_created: new Date(),
     created_at: new Date(),
-    updated_at: new Date()
+    updated_at: new Date(),
+    img_url: "https://res.cloudinary.com/drmzgx5pw/image/upload/v1718406552/uploads/urbuyxpn8x4sy4oqf7ea.png"
   },
   {
     title: "Gary",
@@ -40,7 +43,8 @@ const listingData = [
     location: "Bikini Bottom",
     date_created: new Date(),
     created_at: new Date(),
-    updated_at: new Date()
+    updated_at: new Date(),
+    img_url: "https://res.cloudinary.com/drmzgx5pw/image/upload/v1718406348/uploads/z2i3uasgtls7trghhg8w.png"
   },
   {
     title: "guitar of my dreams",
@@ -50,7 +54,8 @@ const listingData = [
     location: "Seattle, WA",
     date_created: new Date(),
     created_at: new Date(),
-    updated_at: new Date()
+    updated_at: new Date(),
+    img_url: "https://res.cloudinary.com/drmzgx5pw/image/upload/v1718404725/uploads/t5jkysnrldoxfq2qqf7v.png"
   },
 ];
 

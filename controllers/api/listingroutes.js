@@ -31,42 +31,47 @@ router.get("/:id", async (req, res) => {
     res.status(500).json(err);
   }
 });
-router.post("/", async (req, res) => {
-try{
-  newlisting = await Listing.create(req.body);
 
-  res.json({ message: 'listing created.' });
-}catch (err) {
-  res.status(500).json(err);
-}
+// router.post("/", async (req, res) => {
+//   try{
+//     newlisting = await Listing.create(req.body);
 
-})
+//     res.json({ message: 'listing created.' });
+//   }catch (err) {
+//     res.status(500).json(err);
+//   }
+// })
 
-router.post('/listings', async (req, res) => {
-  
+router.post('/', async (req, res) => {
   try {
-    console.info('Request Body:', req.body.imageUrl);
-    
-    const newListing = await Listing.create({
-      img_url: req.body.imageUrl,
-      title: req.body.title,
-      description: req.body.description,
-      price: req.body.price,
-      user_id: req.body.user_id,
-      date_created: req.body.date_created,
-      location: req.body.location,
-    });
-    res.status(201).json({newListing, });
-  } catch (error) {
-    console.error('Error creating listing:', error);
-    res.status(500).json({ message: `${error} Failed to create listing`,  });
-  }
-});
+    // Destructure potential fields from the request body
+    const { title, description, price, imageUrl, user_id, date_created, location } = req.body;
 
-router.post('/listings', async (req, res) => {
-  try {
-    const { title, description, price, imageUrl } = req.body;
-    const newListing = await Listing.create({ title, description, price, imageUrl });
+    // Prepare the data object for Listing.create based on the provided fields
+    let data = {
+      title,
+      description,
+      price,
+    };
+
+    // If imageUrl is provided, use it, otherwise check for img_url (to support both request formats)
+    data.img_url = imageUrl || req.body.img_url;
+
+    // Add optional fields if they are provided
+    if (user_id) {
+      data.user_id = user_id
+    }
+    if (date_created) {
+      data.date_created = date_created
+    }
+    if (location) {
+      data.location = location
+    }
+
+    // Create the listing with the prepared data
+    const newListing = await Listing.create(data);
+
+    // Respond with the created listing
     res.status(201).json(newListing);
   } catch (error) {
     console.error('Error creating listing:', error);

@@ -14,21 +14,25 @@
     <!-- Back and Login Buttons -->
     <div class="flex justify-end mb-4">
   <button onclick="history.back()" class="bg-gray-500 hover:bg-gray-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline border border-gray-300 mr-2">Back</button>
-  <a href="/login" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline border border-gray-300">Login</a>
 </div>
     
     <div class="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4 mx-4">
       <h1 class="text-2xl font-bold text-center mb-6">{{user.username}}'s Profile</h1>
 
       <h2 class="text-xl font-bold mb-4">Your Posts</h2>
-      <ul class="list-disc pl-5">
-        {{#each user.listings as |listing|}}
-          <li class="mb-2">{{listing.title}}</li>
-        {{/each}}
-      </ul>
+      
+      <section>
+  <div>
+    {{> listings}}
+  </div>
+  <div>
+    {{> listingModal}}
+  </div>
+</section>
     </div>
   </div>
 
+<script src="/js/modal.js"></script>
   <!-- Optional JavaScript for additional functionality -->
   <!-- jQuery and any other scripts can be included here if needed -->
 </body>

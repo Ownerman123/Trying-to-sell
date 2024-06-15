@@ -75,7 +75,7 @@ router.get("/newListing", async (req, res) => {
     const location = locationData ? `${locationData.city}, ${locationData.country_name}` : "";
 
 
-    res.render("newListing", { location , user_id: req.session.user_id });
+    res.render("newListing", { location , user_id: req.session.user_id, logged_in: req.session.logged_in });
 
   } catch (err) {
     console.error("Failed to fetch location data:", err);

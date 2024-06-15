@@ -5,6 +5,7 @@ const { User, Listing } = require("../../models");
 const bcrypt = require("bcrypt");
 const session = require('express-session');
 
+
 // Route to render login page
 router.get("/login", (req, res) => {
   res.render("login");
@@ -30,7 +31,7 @@ router.post("/login", [
     if (!validPassword) {
       return res.status(401).json({ message: "Login failed. Password incorrect." });
     }
-
+    req.session.user_id = user.id;
     req.session.user = { id: user.id, username: user.username };
     req.session.user_id = user.id; 
     req.session.logged_in = true;
@@ -45,13 +46,9 @@ router.post("/login", [
 router.post("/signup", async (req, res) => {
   try {
     const existingUser = await User.findOne({ where: { username: req.body.username } });
-    if (existingUser) {
-      return res.status(400).json({ message: 'Signup failed. Username already exists.' });
+    if (existingUser) { console.log(existingUser)
+      return res.status(400).json({ message: 'Signup failed. Username already exists.' , user: existingUser });
     }
-
-
-    // const hashedPassword = await bcrypt.hash(req.body.password, 10);
-
 
     const newUser = await User.create({
       name: req.body.name,
@@ -61,11 +58,11 @@ router.post("/signup", async (req, res) => {
       password: req.body.password,
 
     });
-
+    req.session.user_id = newUser.id;
     req.session.user = { id: newUser.id, username: newUser.username };
     req.session.logged_in = true;
 
-    res.json({ message: 'Signed up and logged in.' });
+    res.status(200).json({ message: 'Signed up and logged in.' });
   } catch (err) {
     res.status(500).json(err);
   }
@@ -98,11 +95,24 @@ router.get("/profile", async (req, res) => {
       attributes: { exclude: ["password"] }
     });
 
+    const listingData = await Listing.findAll({
+      where: { user_id: req.session.user.id },
+      include: [
+        {
+          model: User,
+          attributes: ['name'], // Only include the user's name
+        },
+      ],
+      order: [["createdAt", "DESC"]] // Assuming you want the newest posts first
+    });
+
+console.log(user.listings)
+const listings = listingData.map((listing) => listing.get({ plain: true }));
     if (!user) {
       return res.status(404).json({ message: 'User not found.' });
     }
 
-    res.render("profile", { user: user.get({ plain: true }),});
+    res.render("profile", { user: user.get({ plain: true }), logged_in: req.session.logged_in, listings });
   } catch (err) {
     res.status(500).json(err);
   }
