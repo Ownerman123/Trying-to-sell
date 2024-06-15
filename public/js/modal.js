@@ -23,7 +23,7 @@ document.addEventListener("DOMContentLoaded", () => {
             document.getElementById("modal-description").innerText = data.description;
             document.getElementById("modal-price").innerText = `Price: $${data.price}`;
             document.getElementById("modal-location").innerText = `Location: ${data.location}`;
-            document.getElementById("modal-time").innerText = `Posted: ${data.time}`;
+            document.getElementById("modal-time").innerText = `Posted: ${data.date_created}`;
             modal.classList.remove("hidden");
           })
           .catch(err => console.error("Error fetching listing data:", err));
