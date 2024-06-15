@@ -4,7 +4,8 @@ const titleInput = document.getElementById('titleInput');
 const descriptionInput = document.getElementById('descriptionInput');
 const priceInput = document.getElementById('priceInput');
 const userInput = document.getElementById('userId');
-console.log(userInput.value);
+const locationinput = document.getElementById('location');
+
 
 document.getElementById('uploadForm').addEventListener('submit', async (e) => {
     e.preventDefault();
@@ -37,6 +38,7 @@ document.getElementById('uploadForm').addEventListener('submit', async (e) => {
     newlisting.description = descriptionInput.value;
     newlisting.price = priceInput.value;
     newlisting.user_id = userInput.value;
+    newlisting.location = locationinput.value;
     newlisting.date_created = new Date();
     console.log(newlisting.imageUrl);
     
