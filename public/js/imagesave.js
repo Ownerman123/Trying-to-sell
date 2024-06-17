@@ -1,11 +1,11 @@
 
-document.addEventListener('DOMContentLoaded', () => {
-  const fileInput = document.getElementById('fileInput');
-  const titleInput = document.getElementById('titleInput');
-  const descriptionInput = document.getElementById('descriptionInput');
-  const priceInput = document.getElementById('priceInput');
-  const userInput = document.getElementById('userId');
-  const locationInput = document.getElementById('locationInput');
+const fileInput = document.getElementById('fileInput');
+const titleInput = document.getElementById('titleInput');
+const descriptionInput = document.getElementById('descriptionInput');
+const priceInput = document.getElementById('priceInput');
+const userInput = document.getElementById('userId');
+const locationinput = document.getElementById('location');
+
 
   console.log('fileInput:', fileInput);
   console.log('titleInput:', titleInput);
@@ -66,24 +66,25 @@ document.addEventListener('DOMContentLoaded', () => {
     newlisting.description = descriptionInput.value;
     newlisting.price = priceInput.value;
     newlisting.user_id = userInput.value;
-    newlisting.location = locationInput.value;
+    newlisting.location = locationinput.value;
     newlisting.date_created = new Date();
     console.log(newlisting.imageUrl);
     
     console.log(newlisting);
-    const created = await fetch("/api/listings/listings", {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify(newlisting)
+    const created = await fetch("/api/listings/",{
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(newlisting)
     });
      
-    if (created.ok) {
-      console.log('Listing created');
-    } else {
-      console.log('Something went wrong', created);
-    }
+    if(created.ok){
+        console.log('listing created');
+        document.location.replace('/')
+    }else{console.log('something went wrong', created)}
+
+
   });
 });
 

@@ -1,5 +1,4 @@
 const router = require("express").Router();
-
 const homepageRoutes = require("./homepageroutes");
 const controllerroutes = require("./api");
 
