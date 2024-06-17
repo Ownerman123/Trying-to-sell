@@ -4,63 +4,52 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>"Try" To Sell</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="stylesheet" href="/public/css/style.css" />
+    <link rel="stylesheet" href="/css/style.css" />
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+
   </head>
 
   <body>
     <div class="flex-column justify-space-around">
-      <header
-        id="header"
-        class="display-flex justify-space-between align-center p-2"
-      >
-        <!-- component -->
+
+
+      <header class="header-gradient">
         <nav
-          class="font-sans flex flex-col text-center content-center sm:flex-row sm:text-left sm:justify-between py-2 px-6 bg-white shadow sm:items-baseline w-full"
+          class="flex contanier mx-auto justify-between bg-white shadow p-6 w-full"
         >
-
-          <div class="mb-2 sm:mb-0 flex flex-row">
-            <div class="h-10 w-10 self-center mr-2">
-              <img
-                class="h-10 w-10 self-center"
-                src="https://placehold.co/600x400"
-              />
-            </div>
-            <div>
-              <a
-                href="/"
-                class="text-2xl no-underline text-grey-darkest hover:text-blue-dark font-sans font-bold"
-              >"TRY" To Sell</a><br />
-              <span class="text-xs text-grey-dark">The Suedo Selling Market!</span>
-            </div>
-          </div>
-
-          <div class="sm:mb-0 self-center">
+    <div class="flex items-center space-x-3">
+      <img class="rounded-full custom-size" src="./images/trying.png" alt="Trying to Sell Logo" />
+      <div>
+        <a href="/" class="px-6 text-5xl no-underline text-grey-darkest hover:text-blue-dark font-bold" style="font-family: 'Roboto', sans-serif;">TRY TO SELL!</a>
+        <br />
+        <span class="p-6 mx-8 text-s text-grey-dark">The Suedo Selling Market!</span>
+      </div>
+    </div>
+          <div class="flex items-center space-x-3">
             <!-- <div class="h-10" style="display: table-cell, vertical-align: middle;"> -->
             {{#if logged_in}}
           <a
             href="/newListing"
-            class="text-md no-underline text-grey-darker hover:text-blue-dark ml-2 px-1"
+            class="bg-blue-500 text-white font-bold py-2 px-4 rounded hover:bg-blue-700 transition duration-300 ease-in-out"
           >Create Listing</a>
           <a
             href="/api/user/profile"
-            class="text-md no-underline text-grey-darker hover:text-blue-dark ml-2 px-1"
+            class="bg-blue-500 text-white font-bold py-2 px-4 rounded hover:bg-blue-700 transition duration-300 ease-in-out"
           >Profile</a>
           <button
             id="logout-btn"
-            class="text-md no-underline text-grey-darker hover:text-blue-dark ml-2 px-1"
+            class="bg-blue-500 text-white font-bold py-2 px-4 rounded hover:bg-blue-700 transition duration-300 ease-in-out"
           >Logout</button>
           {{else}}
           <a
             href="/login"
-            class="text-md no-underline text-black hover:text-blue-dark ml-2 px-1"
+            class="bg-blue-500 text-white font-bold py-2 px-4 rounded hover:bg-blue-700 transition duration-300 ease-in-out"
           >Login</a>
           {{/if}}
-            
-            <!-- </div> -->
-
           </div>
         </nav>
       </header>
+
 
       <main class="mt-5 w-full">
         <!-- Render the sub layout -->
@@ -76,5 +65,37 @@
       
     {{/if}}
   </body>
+
+<footer class="bg-gray-800 text-white py-8">
+    <div class="container mx-auto px-4">
+        <div class="grid grid-cols-3 gap-8">
+            <div>
+                <h3 class="font-bold text-lg mb-3">Quick Links</h3>
+                <ul>
+                    <li><a href="/" class="hover:underline">Home</a></li>
+                    <li><a href="/about" class="hover:underline">About Us</a></li>
+                    <li><a href="/faq" class="hover:underline">FAQ</a></li>
+                </ul>
+            </div>
+            <div>
+                <h3 class="font-bold text-lg mb-3">Legal</h3>
+                <ul>
+                    <li><a href="/privacy" class="hover:underline">Privacy Policy</a></li>
+                </ul>
+            </div>
+            <div>
+                <h3 class="font-bold text-lg mb-3">Follow Us</h3>
+                <ul>
+                    <li><a href="https://twitter.com" class="hover:underline">Twitter</a></li>
+                    <li><a href="https://facebook.com" class="hover:underline">Facebook</a></li>
+                    <li><a href="https://instagram.com" class="hover:underline">Instagram</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="text-center mt-8">
+            <p>&copy; 2024 TRY TO SELL. All rights reserved.</p>
+        </div>
+    </div>
+</footer>
 
 </html>
