@@ -112,7 +112,7 @@ const listings = listingData.map((listing) => listing.get({ plain: true }));
       return res.status(404).json({ message: 'User not found.' });
     }
 
-    res.render("profile", { user: user.get({ plain: true }), logged_in: req.session.logged_in, listings });
+    res.render("profile", { user: user.get({ plain: true }), logged_in: req.session.logged_in, listings, prof: true });
   } catch (err) {
     res.status(500).json(err);
   }
