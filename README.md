@@ -14,9 +14,40 @@ The Trying to Sell project is a comprehensive website designed to facilitate the
 
 ## Installation
 To get started, clone the repository and install the necessary dependencies:
+git clone https://github.com/your-github/trying-to-sell.git
+cd trying-to-sell
+npm install
+
+Create a .env file in the root directory and update it with your database credentials and other environment variables:
+
+- DB_NAME='database_name'
+- DB_USER='database_username'
+- DB_PASSWORD='database_password'
+- DB_HOST='localhost'
+- SESSION_SECRET='your_secret'
+
+Run database migrations:
+
+- npx sequelize db:migrate
+
+Start the application:
+
+- npm start
 
 ## Usage
 
+After installing, navigate to http://localhost:3000 to view the application. Here's how to use the application:
+
+- Register/Login: Start by registering or logging in to manage your product listings.
+- Create Listings: Use the interface to add products to your inventory.
+- Manage Products: Update or delete products as needed.
+
+## API Routes
+
+- GET /api/products - Retrieves all products.
+- POST /api/products - Adds a new product.
+- PUT /api/products/:id - Updates an existing product.
+- DELETE /api/products/:id - Deletes a product.
 
 ## Technologies
 
@@ -45,6 +76,13 @@ This project is licensed under the ## License
 This project is licensed under the [MIT License](https://opensource.org/licenses/MIT).
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT) license.
+
+## Contributing
+If you would like to contribute, please follow these steps:
+
+- Fork the repository: Click the fork button.
+- Make your changes: Clone your fork and make the changes on your local machine.
+- Create a pull request: Push your changes to your fork and then create a pull request from your fork to the main repository.
 
 ## Questions
 If you have any questions about the project, feel free to reach out!
