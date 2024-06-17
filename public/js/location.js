@@ -4,19 +4,15 @@ document.addEventListener('DOMContentLoaded', () => {
   
     fetchLocationButton.addEventListener('click', async () => {
       try {
-        const response = await fetch('/api/location');
-        if (!response.ok) {
-          throw new Error('Network response was not ok');
-        }
-        const locationData = await response.json();
-        if (locationData && locationData.city && locationData.country_name) {
-          locationInput.value = `${locationData.city}, ${locationData.country_name}`;
+        const response = await fetch('/api/location/location');
+        const data = await response.json();
+        if (data && data.city && data.country_name) {
+          locationInput.value = `${data.city}, ${data.country_name}`;
         } else {
-          alert('Unable to fetch location data');
+          console.error('Location data is incomplete:', data);
         }
       } catch (error) {
-        console.error('Error fetching location data:', error);
-        alert('Unable to fetch location data');
+        console.error('Error fetching location:', error);
       }
     });
   });
