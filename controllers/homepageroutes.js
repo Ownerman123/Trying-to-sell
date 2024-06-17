@@ -2,6 +2,8 @@ const express = require("express");
 const router = express.Router();
 const { Listing, User } = require("../models");
 const getLocation = require('../utils/getLocation');
+const {PORT} = require('../server')
+
 
 router.get("/", async (req, res) => {
   try {
@@ -42,7 +44,7 @@ router.get("/login", async (req, res) => {
 router.get("/listing/:id", async (req, res) => {
   console.log(req.params);
   try {
-    const listingResponse = await fetch(`http://localhost:3001/api/listings/${req.params.id}`);
+    const listingResponse = await fetch(`http://trying-to-sell-w7ib.onrender.com/:${PORT}/api/listings/${req.params.id}`);
     console.log("THIS IS THE THING", listingResponse);
     if (!listingResponse.ok) {
       if(listingResponse.status === 404 ){
@@ -53,7 +55,7 @@ router.get("/listing/:id", async (req, res) => {
     }
 
     const listingdata = await listingResponse.json();
-    const currentUser = await fetch("http://localhost:3001/api/user");
+    const currentUser = await fetch(`http://trying-to-sell-w7ib.onrender.com/:${PORT}/api/user`);
     console.log("this is the data", listingdata);
     console.log(req.session.user);
 
