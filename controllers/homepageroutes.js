@@ -91,6 +91,18 @@ router.get("/setLogin", (req, res) => {
   res.send("You are now logged in for testing purposes.");
 });
 
+router.get('/faq', (req, res) => {
+  res.render('faq');
+});
+
+router.get('/about', (req, res) => {
+  res.render('about'); 
+});
+
+router.get('/privacy', (req, res) => {
+  res.render('privacy');
+});
+
 module.exports = router;
 
 

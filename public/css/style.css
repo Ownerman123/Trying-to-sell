@@ -1,0 +1,4 @@
+.custom-size {
+    height: 88px !important; /* or any other specific size */
+    width: 88px !important; /* ensure width matches height for a circle */
+}

@@ -5,12 +5,12 @@ const sendButton = document.getElementById("send-button");
 const openChatButton = document.getElementById("open-chat");
 const closeChatButton = document.getElementById("close-chat");
 
-let isChatboxOpen = true; // Set the initial state to open
+let isChatboxOpen = false; // Set the initial state to open
 
 // Function to toggle the chatbox visibility
 function toggleChatbox() {
-  chatContainer.classList.toggle("hidden");
-  isChatboxOpen = !isChatboxOpen; // Toggle the state
+    chatContainer.classList.toggle("hidden");
+    isChatboxOpen = !isChatboxOpen; // Toggle the state
 }
 
 // Add an event listener to the open chat button
@@ -81,4 +81,7 @@ function respondToUser(userMessage) {
 
 
 // Automatically open the chatbox on page load
-toggleChatbox();
+if (isChatboxOpen){
+toggleChatbox()
+};
+
