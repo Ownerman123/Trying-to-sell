@@ -79,4 +79,24 @@ router.post('/', async (req, res) => {
   }
 });
 
+router.delete('/listings/:id', async (req, res) => {
+  try {
+    const id = req.params.id;
+    const deleted = await Listing.destroy({
+      where: { id: id }
+    });
+
+    if (deleted) {
+      res.status(200).send({ message: `Listing ${id} deleted.` });
+    } else {
+      res.status(404).send({ message: 'Listing not found.' });
+    }
+  } catch (error) {
+    console.error('Failed to delete listing:', error);
+    res.status(500).send({ message: 'Failed to delete listing due to an internal error.' });
+  }
+});
+
+module.exports = router;
+
 module.exports = router;
