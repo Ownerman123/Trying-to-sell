@@ -5,8 +5,8 @@ The Trying to Sell project is a comprehensive website designed to facilitate the
 
 ## Table of Contents
 - [Installation](#installation)
+- [Screenshots](#Screenshot)
 - [Usage](#usage)
-- [API Routes](#api-routes)
 - [Technologies](#technologies)
 - [License](#license)
 - [Contributing](#contributing)
@@ -34,6 +34,12 @@ Start the application:
 
 - npm start
 
+- ## Screenshots
+
+![Homepage](/public/images/homescreen.png "Optional title")
+
+![Create Listing](/public/images/Create_Listing.png "Optional title")
+
 ## Usage
 
 After installing, navigate to http://localhost:3000 to view the application. Here's how to use the application:
@@ -41,13 +47,8 @@ After installing, navigate to http://localhost:3000 to view the application. Her
 - Register/Login: Start by registering or logging in to manage your product listings.
 - Create Listings: Use the interface to add products to your inventory.
 - Manage Products: Update or delete products as needed.
+- Link for our deployed Render: https://trying-to-sell-w7ib.onrender.com/
 
-## API Routes
-
-- GET /api/products - Retrieves all products.
-- POST /api/products - Adds a new product.
-- PUT /api/products/:id - Updates an existing product.
-- DELETE /api/products/:id - Deletes a product.
 
 ## Technologies
 
